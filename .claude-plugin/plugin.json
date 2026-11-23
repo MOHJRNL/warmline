@@ -1,0 +1,15 @@
+{
+  "name": "warmline",
+  "version": "0.2.0",
+  "description": "Band above the prompt: prompt-cache state, time left, rebuild vs keep-warm cost (English or Arabic).",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "language": {
+      "type": "string",
+      "title": "Band language",
+      "description": "Language of the cache band: English or Arabic (RTL).",
+      "options": ["en", "ar"],
+      "default": "en"
+    }
+  }
+}
