@@ -20,7 +20,14 @@ const compact = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String
 // Reads the transcript's tail when its size changed since the last read.
 async function refresh($: EngineInterface) {
   if (!transcriptPath) return
-  const { size } = await $.fs.stat(transcriptPath)
+  // A new session has no transcript file until its first message; a throw here used to
+  // stop the session.start tick and the per-second loop from ever being scheduled.
+  let size: number
+  try {
+    ;({ size } = await $.fs.stat(transcriptPath))
+  } catch {
+    return
+  }
   if (size === seenSize) return
   const offset = Math.max(0, size - TAIL_BYTES)
   const text = await $.fs.read(transcriptPath, { offset, length: size - offset })
@@ -72,10 +79,10 @@ export const register: Register = (on, options) => {
     const info = await $.session.info()
     transcriptPath = info.transcriptPath
     seenSize = -1
-    await tick($, lang)
     $.clock.every(1000, () => {
       void tick($, lang)
     })
+    await tick($, lang)
     return next(e)
   })
 

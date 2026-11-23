@@ -26,3 +26,16 @@ test('the band follows the transcript after session start', { options: { languag
   expect((await ui.find({ type: 'Text', text: /04:00 left/ }))?.text).toMatch(/04:00 left/)
   await ui.unmount()
 })
+
+test('a new session with no transcript yet still starts', { options: { language: 'en' } }, async ($, on) => {
+  on('session.start', (_: unknown, e: { cwd: string }) => ({ cwd: e.cwd }))
+  on('session.info', () => ({ value: { transcriptPath: '/fake/new-session.jsonl' } }))
+  on('clock.now', () => ({ value: NOW }))
+  on('fs.stat', () => { throw new Error('ENOENT') })
+  let scheduled = false
+  on('clock.every', () => { scheduled = true; return { value: undefined } })
+
+  await $.session.start({ cwd: '/', surface: 'desktop', isInteractive: true })
+  // The one-second loop must be scheduled even though the first read threw.
+  expect(scheduled).toBe(true)
+})
