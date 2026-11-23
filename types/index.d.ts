@@ -12,7 +12,7 @@ export type CacheSnapshot = {
 
 declare module 'claude-code' {
   interface PluginState {
-    'warmline': {
+    'warmline-band': {
       snapshot: CacheSnapshot | null
       now: number
       alertedAt: number | null

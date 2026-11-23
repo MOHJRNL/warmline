@@ -1,5 +1,5 @@
 {
-  "name": "warmline",
+  "name": "warmline-band",
   "version": "0.2.1",
   "description": "Band above the prompt: prompt-cache state, time left, rebuild vs keep-warm cost (English or Arabic).",
   "types": "./types/index.d.ts",

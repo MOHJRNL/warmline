@@ -37,13 +37,13 @@ Warmline reads your session transcript file, which Claude Code writes as JSON li
 Type this at the prompt of a terminal session:
 
 ```text
-/plugin install warmline --marketplace MOHJRNL/warmline
+/plugin install warmline-band --marketplace MOHJRNL/warmline
 ```
 
 Or from a shell:
 
 ```bash
-claude plugin install warmline --marketplace MOHJRNL/warmline
+claude plugin install warmline-band --marketplace MOHJRNL/warmline
 ```
 
 In the desktop app, where `/plugin` isn't available: click **+** next to the prompt box, choose **Plugins**, then **Add marketplace** and enter `MOHJRNL/warmline`, then **Add plugin**.
@@ -87,6 +87,13 @@ claude plugin test ./         # unit and UI tests
 ## Test proof
 
 A recorded test run on a fresh clone: see [TEST-PROOF.md](TEST-PROOF.md).
+
+## What it sends and writes
+
+- **Reads:** your session transcript file, read-only, and only when the file has grown.
+- **Writes:** nothing to disk. The band's state lives in memory for the session.
+- **Model call:** only when you press **Copy handoff**. The call is `$.model.complete`, which Claude Code makes for the plugin. It sends the last 16 messages, each cut to 1,500 characters, to the `haiku` model (set by `handoffModel`) to write a handoff prompt. The result is copied to your clipboard. Nothing else calls a model.
+- **Network:** none of its own. It doesn't call any service other than the model call above.
 
 ## License and commercial use
 

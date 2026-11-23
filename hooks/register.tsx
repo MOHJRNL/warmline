@@ -5,9 +5,9 @@ import { cacheState, cachedTokens, contextTokens, costs, mmss, parseTranscriptTa
 import { config, priceFor } from './config'
 import { textFor, toLang } from './text'
 
-const snapshot = atom({ plugin: 'warmline', key: 'snapshot' } as const, null)
-const now = atom({ plugin: 'warmline', key: 'now' } as const, 0)
-const alertedAt = atom({ plugin: 'warmline', key: 'alertedAt' } as const, null)
+const snapshot = atom({ plugin: 'warmline-band', key: 'snapshot' } as const, null)
+const now = atom({ plugin: 'warmline-band', key: 'now' } as const, 0)
+const alertedAt = atom({ plugin: 'warmline-band', key: 'alertedAt' } as const, null)
 
 // Only the file watch lives here; nothing drawn does. A reload resets it and re-reads.
 const TAIL_BYTES = 1_048_576

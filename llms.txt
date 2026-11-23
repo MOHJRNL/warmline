@@ -2,7 +2,7 @@
 
 > Claude Code plugin. A band above the chat prompt showing prompt-cache state (warm, cooling soon, cold), time left before cold, and the USD cost of a cache rebuild versus a refresh. Numbers come from the session transcript's usage data. Alerts before cold with one suggestion. English or Arabic (RTL).
 
-Install (Claude Code): /plugin install warmline --marketplace MOHJRNL/warmline
+Install (Claude Code): /plugin install warmline-band --marketplace MOHJRNL/warmline
 Not supported: Codex, Gemini CLI, OpenCode, Grok.
 
 ## Docs

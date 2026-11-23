@@ -21,7 +21,7 @@ test('the band follows the transcript after session start', { options: { languag
 
   await $.session.start({ cwd: '/', surface: 'desktop', isInteractive: true })
 
-  const ui = await $.ui.mount({ plugin: 'warmline', surface: 'desktop', component: 'AbovePrompt', requestId: 'band', props: PROPS })
+  const ui = await $.ui.mount({ plugin: 'warmline-band', surface: 'desktop', component: 'AbovePrompt', requestId: 'band', props: PROPS })
   expect((await ui.find({ type: 'Text', text: /🟢 Warm/ }))?.text).toMatch(/🟢 Warm/)
   expect((await ui.find({ type: 'Text', text: /04:00 left/ }))?.text).toMatch(/04:00 left/)
   await ui.unmount()

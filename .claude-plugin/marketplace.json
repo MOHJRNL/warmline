@@ -1,5 +1,5 @@
 {
   "name": "warmline",
   "owner": { "name": "MOHJRNL" },
-  "plugins": [{ "name": "warmline", "source": "./" }]
+  "plugins": [{ "name": "warmline-band", "source": "./" }]
 }

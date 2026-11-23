@@ -49,7 +49,7 @@ for (const language of ['en', 'ar'] as const) {
       const seeds: Record<string, unknown> = { snapshot: snapshotAt(60_000), now: NOW, alertedAt: null }
       on('state.get', (_, e) => ({ value: { value: seeds[e.key as string] ?? null, version: 1 } }))
 
-      const ui = await $.ui.mount({ plugin: 'warmline', surface, component: 'AbovePrompt', requestId: 'band', props: PROPS })
+      const ui = await $.ui.mount({ plugin: 'warmline-band', surface, component: 'AbovePrompt', requestId: 'band', props: PROPS })
 
       expect((await ui.find({ type: 'Text', text: L.warm }))?.text).toMatch(L.warm)
       expect((await ui.find({ type: 'Text', text: L.left }))?.text).toMatch(L.left)
@@ -63,7 +63,7 @@ for (const language of ['en', 'ar'] as const) {
       const seeds: Record<string, unknown> = { snapshot: snapshotAt(6 * 60_000), now: NOW, alertedAt: null }
       on('state.get', (_, e) => ({ value: { value: seeds[e.key as string] ?? null, version: 1 } }))
 
-      const ui = await $.ui.mount({ plugin: 'warmline', surface, component: 'AbovePrompt', requestId: 'band', props: PROPS })
+      const ui = await $.ui.mount({ plugin: 'warmline-band', surface, component: 'AbovePrompt', requestId: 'band', props: PROPS })
 
       expect((await ui.find({ type: 'Text', text: L.cold }))?.text).toMatch(L.cold)
       expect((await ui.find({ type: 'Text', text: L.idle }))?.text).toMatch(L.idle)
@@ -76,7 +76,7 @@ test('English is the default when no language is chosen', async ($, on) => {
   const seeds: Record<string, unknown> = { snapshot: snapshotAt(60_000), now: NOW, alertedAt: null }
   on('state.get', (_, e) => ({ value: { value: seeds[e.key as string] ?? null, version: 1 } }))
 
-  const ui = await $.ui.mount({ plugin: 'warmline', surface: 'desktop', component: 'AbovePrompt', requestId: 'band', props: PROPS })
+  const ui = await $.ui.mount({ plugin: 'warmline-band', surface: 'desktop', component: 'AbovePrompt', requestId: 'band', props: PROPS })
 
   expect((await ui.find({ type: 'Text', text: /🟢 Warm/ }))?.text).toMatch(/🟢 Warm/)
   await ui.unmount()
