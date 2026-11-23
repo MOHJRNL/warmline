@@ -8,8 +8,14 @@
       "type": "string",
       "title": "Band language",
       "description": "Language of the cache band: English or Arabic (RTL).",
-      "options": ["en", "ar"],
+      "options": [
+        "en",
+        "ar"
+      ],
       "default": "en"
     }
+  },
+  "author": {
+    "name": "Noah Hendy"
   }
 }
